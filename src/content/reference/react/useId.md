@@ -4,7 +4,7 @@ title: useId
 
 <Intro>
 
-`useId` is a React Hook for generating unique IDs that can be passed to accessibility attributes.
+`useId` adalah sebuah *Hook* React untuk menghasilkan ID yang unik yang dapat dioper ke atribut aksesibilitas.
 
 ```js
 const id = useId()
@@ -16,11 +16,11 @@ const id = useId()
 
 ---
 
-## Reference {/*reference*/}
+## Referensi {/*referensi*/}
 
 ### `useId()` {/*useid*/}
 
-Call `useId` at the top level of your component to generate a unique ID:
+Panggil `useId` pada level teratas dari komponen Anda untuk menghasilkan ID yang unik:
 
 ```js
 import { useId } from 'react';
@@ -30,35 +30,35 @@ function PasswordField() {
   // ...
 ```
 
-[See more examples below.](#usage)
+[Lihat contoh lebih banyak dibawah.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameter {/*parameter*/}
 
-`useId` does not take any parameters.
+`useId` tidak memerlukan parameter apapun.
 
-#### Returns {/*returns*/}
+#### Pengembalian {/*pengembalian*/}
 
-`useId` returns a unique ID string associated with this particular `useId` call in this particular component.
+`useId` mengengembalikan sebuah ID *string* yang unik yang terkait dengan pemanggilan `useId` dalam komponen khusus ini.
 
-#### Caveats {/*caveats*/}
+#### Peringatan {/*peringatan*/}
 
-* `useId` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
+* `useId` adalah sebuah *Hook*, sehingga Anda hanya dapat memanggilnya **di tingkat atas komponen Anda** atau *Hooks* Anda sendiri. Anda tidak dapat memanggilnya dalam perulangan atau pengkondisian. Jika Anda membutuhkannya, ekstrak sebuah komponen baru dan pindahkan *state* ke dalamnya.
 
-* `useId` **should not be used to generate keys** in a list. [Keys should be generated from your data.](/learn/rendering-lists#where-to-get-your-key)
+* `useId` **tidak boleh digunakan untuk menghasilkan *keys*** dalam sebuah daftar. [*Keys* harus dihasilkan dari data Anda.](/learn/rendering-lists#where-to-get-your-key)
 
 ---
 
-## Usage {/*usage*/}
+## Penggunaan {/*penggunaan*/}
 
 <Pitfall>
 
-**Do not call `useId` to generate keys in a list.** [Keys should be generated from your data.](/learn/rendering-lists#where-to-get-your-key)
+**Jangan memanggil `useId` untuk menghasilkan *keys* di dalam sebuah daftar.** [*Keys* harus dihasilkan dari data Anda.](/learn/rendering-lists#where-to-get-your-key)
 
 </Pitfall>
 
-### Generating unique IDs for accessibility attributes {/*generating-unique-ids-for-accessibility-attributes*/}
+### Membuat ID unik untuk atribut aksesibilitas {/*membuat-id-unik-untuk-atribut-aksesibilitas*/}
 
-Call `useId` at the top level of your component to generate a unique ID:
+Panggil `useId` di tingkat atas komponen Anda untuk membuat ID unik:
 
 ```js [[1, 4, "passwordHintId"]]
 import { useId } from 'react';
@@ -68,7 +68,7 @@ function PasswordField() {
   // ...
 ```
 
-You can then pass the <CodeStep step={1}>generated ID</CodeStep> to different attributes:
+Anda kemudian dapat mengoper <CodeStep step={1}>ID yang dihasilkan</CodeStep> ke atribut berbeda:
 
 ```js [[1, 2, "passwordHintId"], [1, 3, "passwordHintId"]]
 <>
@@ -77,11 +77,11 @@ You can then pass the <CodeStep step={1}>generated ID</CodeStep> to different at
 </>
 ```
 
-**Let's walk through an example to see when this is useful.**
+**Mari kita telusuri sebuah contoh untuk melihat kapan ini berguna.**
 
-[HTML accessibility attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) like [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) let you specify that two tags are related to each other. For example, you can specify that an element (like an input) is described by another element (like a paragraph).
+[Atribut aksesibilitas HTML](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) seperti [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) membiarkan Anda menentukan bahwa dua tag terkait satu sama lain. Misalnya, Anda dapat menentukan bahwa elemen (seperti input) dijelaskan oleh elemen lain (seperti sebuah paragraf).
 
-In regular HTML, you would write it like this:
+Dalam HTML biasa, Anda akan menulisnya seperti ini:
 
 ```html {5,8}
 <label>
@@ -96,7 +96,7 @@ In regular HTML, you would write it like this:
 </p>
 ```
 
-However, hardcoding IDs like this is not a good practice in React. A component may be rendered more than once on the page--but IDs have to be unique! Instead of hardcoding an ID, generate a unique ID with `useId`:
+Namun, hardcoding ID seperti ini bukanlah praktik yang baik di React. Komponen dapat dirender lebih dari sekali pada halaman--tetapi ID harus unik! Alih-alih melakukan hardcoding ID, buat ID unik dengan `useId`:
 
 ```js {4,11,14}
 import { useId } from 'react';
@@ -120,7 +120,7 @@ function PasswordField() {
 }
 ```
 
-Now, even if `PasswordField` appears multiple times on the screen, the generated IDs won't clash.
+Sekarang, meskipun jika `PasswordField` muncul beberapa kali di layar, ID yang dihasilkan tidak akan bentrok.
 
 <Sandpack>
 
@@ -163,19 +163,19 @@ input { margin: 5px; }
 
 </Sandpack>
 
-[Watch this video](https://www.youtube.com/watch?v=0dNzNcuEuOo) to see the difference in the user experience with assistive technologies.
+[Tonton video ini](https://www.youtube.com/watch?v=0dNzNcuEuOo) untuk melihat perbedaan dalam pengalaman pengguna dengan teknologi bantu.
 
 <Pitfall>
 
-With [server rendering](/reference/react-dom/server), **`useId` requires an identical component tree on the server and the client**. If the trees you render on the server and the client don't match exactly, the generated IDs won't match.
+Dengan [*server rendering*](/reference/react-dom/server), **`useId` Membutuhkan susunan komponen identik pada server dan klien**.  Jika susunan yang Anda render di server dan klien tidak sama persis, ID yang dihasilkan tidak akan cocok.
 
 </Pitfall>
 
 <DeepDive>
 
-#### Why is useId better than an incrementing counter? {/*why-is-useid-better-than-an-incrementing-counter*/}
+#### Mengapa useId lebih baik daripada penghitung inkremental? {/*mengapa-useId-lebih-baik-daripada-penghitung-inkremental*/}
 
-You might be wondering why `useId` is better than incrementing a global variable like `nextId++`.
+Anda mungkin bertanya-tanya mengapa `useId` lebih baik daripada menambah variabel global seperti `nextId++`.
 
 The primary benefit of `useId` is that React ensures that it works with [server rendering.](/reference/react-dom/server) During server rendering, your components generate HTML output. Later, on the client, [hydration](/reference/react-dom/client/hydrateRoot) attaches your event handlers to the generated HTML. For hydration to work, the client output must match the server HTML.
 
